@@ -1,0 +1,534 @@
+{% extends 'ambiental/base.html' %}
+{% load staticfiles %}
+
+{% block content_block %}
+  <div class="container-fluid">
+    <h1><a class="btn btn-danger " href="{% url 'project' project.object.slug %}">Go Back</a></h1>
+    <br>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr><th></th><th><h3>CD-0</h3></th></tr>
+        <tr>
+          <th>Index</th>
+          <th>Rating Element</th>
+          <th>Weighting Designation</th>
+          <th>Weighting Factor</th>
+          <th>Maturity Value</th>
+          <th>Score</th>
+          <th>Comment</th>
+        </tr>
+        <tr>
+          <th>{{ ratingElement.group }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td></td><td><strong>COST</strong></td><tr>
+        {% for ratingElement in reaa %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_a }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>SCHEDULE</strong></td><tr>
+        {% for ratingElement in reba%}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_b }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>SCOPE/TECHNICAL</strong></td><tr>
+        {% for ratingElement in reca %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_c }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>MANAGEMENT PLANNING AND CONTROL</strong></td><tr>
+        {% for ratingElement in reda %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_d }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>EXTERNAL FACTORS</strong></td><tr>
+        {% for ratingElement in reea %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_e }}</strong></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><h4><strong>CD-0 Total:</strong></h4></td>
+          <td><strong>{{ cd.object.total_score }}</strong></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr><th></th><th><h3>CD-1</h3></th></tr>
+        <tr>
+          <th>Index</th>
+          <th>Rating Element</th>
+          <th>Weighting Designation</th>
+          <th>Weighting Factor</th>
+          <th>Maturity Value</th>
+          <th>Score</th>
+          <th>Comment</th>
+        </tr>
+        <tr>
+          <th>{{ ratingElement.group }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td></td><td><strong>COST</strong></td><tr>
+        {% for ratingElement in reab %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_a }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>SCHEDULE</strong></td><tr>
+        {% for ratingElement in rebb %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_b }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>SCOPE/TECHNICAL</strong></td><tr>
+        {% for ratingElement in recb %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_c }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>MANAGEMENT PLANNING AND CONTROL</strong></td><tr>
+        {% for ratingElement in redb %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_d }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>EXTERNAL FACTORS</strong></td><tr>
+        {% for ratingElement in reeb %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_e }}</strong></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><h4><strong>CD-1 Total:</strong></h4></td>
+          <td><strong>{{ cd.object.total_score }}</strong></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr><th></th><th><h3>CD-2</h3></th></tr>
+        <tr>
+          <th>Index</th>
+          <th>Rating Element</th>
+          <th>Weighting Designation</th>
+          <th>Weighting Factor</th>
+          <th>Maturity Value</th>
+          <th>Score</th>
+          <th>Comment</th>
+        </tr>
+        <tr>
+          <th>{{ ratingElement.group }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td></td><td><strong>COST</strong></td><tr>
+        {% for ratingElement in reac %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_a }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>SCHEDULE</strong></td><tr>
+        {% for ratingElement in rebc %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_b }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>SCOPE/TECHNICAL</strong></td><tr>
+        {% for ratingElement in recc %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_c }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>MANAGEMENT PLANNING AND CONTROL</strong></td><tr>
+        {% for ratingElement in redc %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_d }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>EXTERNAL FACTORS</strong></td><tr>
+        {% for ratingElement in reec %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_e }}</strong></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><h4><strong>CD-2 Total:</strong></h4></td>
+          <td><strong>{{ cd.object.total_score }}</strong></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr><th></th><th><h3>CD-3</h3></th></tr>
+        <tr>
+          <th>Index</th>
+          <th>Rating Element</th>
+          <th>Weighting Designation</th>
+          <th>Weighting Factor</th>
+          <th>Maturity Value</th>
+          <th>Score</th>
+          <th>Comment</th>
+        </tr>
+        <tr>
+          <th>{{ ratingElement.group }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td></td><td><strong>COST</strong></td><tr>
+        {% for ratingElement in read %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_a }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>SCHEDULE</strong></td><tr>
+        {% for ratingElement in rebd %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_b }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>SCOPE/TECHNICAL</strong></td><tr>
+        {% for ratingElement in recd %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_c }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>MANAGEMENT PLANNING AND CONTROL</strong></td><tr>
+        {% for ratingElement in redd %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_d }}</strong></td>
+        </tr>
+        <tr><td></td><td><strong>EXTERNAL FACTORS</strong></td><tr>
+        {% for ratingElement in reed %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_e }}</strong></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><h4><strong>CD-3 Total:</strong></h4></td>
+          <td><strong>{{ cd.object.total_score }}</strong></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a class="btn btn-danger" href="{% url 'project' project.object.slug %}">Go Back</a></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% endblock content_block %}
