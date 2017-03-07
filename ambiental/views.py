@@ -148,9 +148,7 @@ class FormBase(LoginRequiredMixin, FormView):
         else:
             context['projects'] = Project.objects.filter(creator=self.request.user.userprofile)
 
-
         return context
-
 
 
 class CreateProject(LoginRequiredMixin, FormView):
@@ -162,21 +160,24 @@ class CreateProject(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
 
-        project = Project.objects.create(creator=self.request.user.userprofile, name=form.cleaned_data['name'], description=form.cleaned_data['description'])
+        project, create = Project.objects.get_or_create(creator=self.request.user.userprofile, name=form.cleaned_data['name'], description=form.cleaned_data['description'])
+        if create:
+            for j in range(4):
+                cd = CD.objects.create(project=project, name='CD-{0}'.format(j))
+                for i in range(39):
+                    if i < 7:
+                        RatingElement.objects.create(cd=cd, group='COST',index='A{0}'.format(i+1), name=A[i])
+                        RatingElement.objects.create(cd=cd, group='SCHEDULE', index='B{0}'.format(i+1), name=B[i])
+                        if i < 5:
+                            RatingElement.objects.create(cd=cd, group='EXTERNAL FACTORS', index='E{0}'.format(i+1), name=E[i])
+                    if i < 19:
+                        RatingElement.objects.create(cd=cd, group='MANAGEMENT PLANNING AND CONTROL', index='D{0}'.format(i+1), name=D[i])
+                    RatingElement.objects.create(cd=cd, group='SCOPE/TECHNICAL', index='C{0}'.format(i+1), name=C[i])
 
-        for j in range(4):
-            cd = CD.objects.create(project=project, name='CD-{0}'.format(j))
-            for i in range(39):
-                if i < 7:
-                    RatingElement.objects.create(cd=cd, group='COST',index='A{0}'.format(i+1), name=A[i])
-                    RatingElement.objects.create(cd=cd, group='SCHEDULE', index='B{0}'.format(i+1), name=B[i])
-                    if i < 5:
-                        RatingElement.objects.create(cd=cd, group='EXTERNAL FACTORS', index='E{0}'.format(i+1), name=E[i])
-                if i < 19:
-                    RatingElement.objects.create(cd=cd, group='MANAGEMENT PLANNING AND CONTROL', index='D{0}'.format(i+1), name=D[i])
-                RatingElement.objects.create(cd=cd, group='SCOPE/TECHNICAL', index='C{0}'.format(i+1), name=C[i])
+            return super(CreateProject, self).form_valid(form)
+        else:
+            return HttpResponseRedirect(reverse_lazy('create-project'))
 
-        return super(CreateProject, self).form_valid(form)
 
 @login_required(login_url=reverse_lazy('login'))
 def search(request):
@@ -270,6 +271,7 @@ class CdDetailView(LoginRequiredMixin, DetailView):
         print context['cd']['object'].total_score
         return context
 
+
 class RatingElementView(LoginRequiredMixin, FormView):
     login_url = reverse_lazy('login')
     redirect_field_name = 'redirect_to'
@@ -317,6 +319,7 @@ class RatingElementView(LoginRequiredMixin, FormView):
         re.save()
         return super(RatingElementView, self).form_valid(form)
 
+
 class CdReportDetailView(LoginRequiredMixin, DetailView):
     login_url = reverse_lazy('login')
     redirect_field_name = 'redirect_to'
@@ -335,6 +338,29 @@ class CdReportDetailView(LoginRequiredMixin, DetailView):
         context['ree'] = RatingElement.objects.filter(cd_id=context['cd']['object'].id, group='EXTERNAL FACTORS')
         return context
 
+
+class FinalReportDetailView(LoginRequiredMixin, DetailView):
+    login_url = reverse_lazy('login')
+    redirect_field_name = 'redirect_to'
+    model = Project
+    template_name = 'ambiental/final_report_detail.html'
+
+    def get_context_data(self, **kwargs):
+        b = ['a', 'b', 'c', 'd']
+        i = 0
+        context = {}
+        total = 0
+        context['project'] = super(FinalReportDetailView, self).get_context_data(**kwargs)
+        context['cd'] = CD.objects.filter(project=context['project']['object'])
+        for critical in context['cd']:
+            context['rea' + b[i]] = RatingElement.objects.filter(cd_id=critical.id, group='COST')
+            context['reb' + b[i]] = RatingElement.objects.filter(cd_id=critical.id, group='SCHEDULE')
+            context['rec' + b[i]] = RatingElement.objects.filter(cd_id=critical.id, group='SCOPE/TECHNICAL')
+            context['red' + b[i]] = RatingElement.objects.filter(cd_id=critical.id, group='MANAGEMENT PLANNING AND CONTROL')
+            context['ree' + b[i]] = RatingElement.objects.filter(cd_id=critical.id, group='EXTERNAL FACTORS')
+            i = i + 1
+        return context
+
 class RegistrationView(FormView):
     form_class = UserProfileForm
     template_name = 'ambiental/registration.html'
@@ -342,19 +368,23 @@ class RegistrationView(FormView):
 
     def form_valid(self, form):
         user, createu = User.objects.get_or_create(username=form.cleaned_data['username'])
-        if user:
-            profile, create = UserProfile.objects.get_or_create(user=user)
-            print create
-            user.set_password(form.cleaned_data['password'])
-            user.first_name = form.cleaned_data['first_name']
-            user.last_name = form.cleaned_data['last_name']
-            user.email = form.cleaned_data['email']
-            user.save()
-            profile.company = form.cleaned_data['company']
-            profile.save()
-            return super(RegistrationView, self).form_valid(form)
+        if createu:
+            if user:
+                profile, create = UserProfile.objects.get_or_create(user=user)
+                print create
+                user.set_password(form.cleaned_data['password'])
+                user.first_name = form.cleaned_data['first_name']
+                user.last_name = form.cleaned_data['last_name']
+                user.email = form.cleaned_data['email']
+                user.save()
+                profile.company = form.cleaned_data['company']
+                profile.save()
+                return super(RegistrationView, self).form_valid(form)
+            else:
+                return HttpResponseRedirect(reverse_lazy('registration'))
         else:
             return HttpResponseRedirect(reverse_lazy('registration'))
+
 
 class LoginView(FormView):
     form_class = LoginForm

@@ -20,6 +20,7 @@
         </tr>
       </thead>
       <tbody>
+        <tr><td></td><td><strong>COST</strong></td><tr>
         {% for ratingElement in rea %}
         <tr>
           <td>{{ ratingElement.index }}</td>
@@ -39,6 +40,7 @@
           <td><strong>Total:</strong></td>
           <td><strong>{{ cd.object.score_a }}</strong></td>
         </tr>
+        <tr><td></td><td><strong>SCHEDULE</strong></td><tr>
         {% for ratingElement in reb %}
         <tr>
           <td>{{ ratingElement.index }}</td>
@@ -58,6 +60,7 @@
           <td><strong>Total:</strong></td>
           <td><strong>{{ cd.object.score_b }}</strong></td>
         </tr>
+        <tr><td></td><td><strong>SCOPE/TECHNICAL</strong></td><tr>
         {% for ratingElement in rec %}
         <tr>
           <td>{{ ratingElement.index }}</td>
@@ -77,6 +80,7 @@
           <td><strong>Total:</strong></td>
           <td><strong>{{ cd.object.score_c }}</strong></td>
         </tr>
+        <tr><td></td><td><strong>MANAGEMENT PLANNING AND CONTROL</strong></td><tr>
         {% for ratingElement in red %}
         <tr>
           <td>{{ ratingElement.index }}</td>
@@ -96,6 +100,7 @@
           <td><strong>Total:</strong></td>
           <td><strong>{{ cd.object.score_d }}</strong></td>
         </tr>
+        <tr><td></td><td><strong>EXTERNAL FACTORS</strong></td><tr>
         {% for ratingElement in ree %}
         <tr>
           <td>{{ ratingElement.index }}</td>
