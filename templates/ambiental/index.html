@@ -2,11 +2,20 @@
 {% load staticfiles %}
 
 {% block content_block %}
-<div class="container-fluid">
+<div class="container">
   <div class="jumbotron">
     <h1 class="display-3">PDRI Ambiental</h1>
     <p>Web Application for the manangement of PDRI Ambiental projects.</p>
   </div>
-  {{projects}}
+  <div class="list-group">
+  {% for project in projects %}
+  <ul class="list-group">
+    <li class="list-group-item justify-content-between">
+      <a href="{% url 'project' project.slug %}"><strong>{{ project }}</strong></a>
+      <span class="badge badge-default badge-pill">By {{ project.creator }}</span>
+    </li>
+  </ul>
+  {% endfor %}
+  </div>
 </div>
 {% endblock %}

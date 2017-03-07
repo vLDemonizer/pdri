@@ -143,7 +143,10 @@ class FormBase(LoginRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = {}
         print self.request.user
-        context['projects'] = Project.objects.filter(creator=self.request.user.userprofile)
+        if self.request.user.username == 'admin':
+            context['projects']  = Project.objects.filter()
+        else:
+            context['projects'] = Project.objects.filter(creator=self.request.user.userprofile)
 
 
         return context
@@ -180,11 +183,12 @@ def search(request):
     login_url = reverse_lazy('login')
     redirect_field_name = 'redirect_to'
     result = None
+    if request.user.username == 'admin':
+        project = Project.objects.filter()
+        result = project
     if request.method == 'POST':
         query = request.POST['query']
-        if request.user.username == 'admin':
-            project = Project.objects.filter()
-        elif query:
+        if query:
             project = Project.objects.filter(creator=request.user.userprofile, name__icontains=query)
             if project:
                 result = project
