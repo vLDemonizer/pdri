@@ -1,0 +1,55 @@
+{% extends 'ambiental/base.html' %}
+{% load staticfiles %}
+
+{% block content_block %}
+<div class="container">
+  <div class="jumbotron">
+    <a class="btn btn-danger" href="{% url 'project' project.slug %}">Go Back</a>
+    {% if highScore > limit %}
+    <br>
+    <br>
+    <h5><strong>The Score is too high for this segment. score: {{ highScore }}, limit = {{ limit }}</strong></h5>
+    {% endif %}
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Rating Element</th>
+          <th>Weighting Designation</th>
+          <th>Weighting Factor</th>
+          <th>Maturity Value</th>
+          <th>Score</th>
+          <th>Comment</th>
+        </tr>
+        <tr>
+          <th>{{ ratingElement.group }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ratingElement in re %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+          <td><a class="btn btn-secondary" href="{% url 'ratingElement' project.slug cd.object.pk ratingElement.pk %}">Edit</a></td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ highScore }}</strong></td>
+          <td><strong><= {{ limit }}</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <a class="btn btn-danger" href="{% url 'project' project.slug %}">Go Back</a>
+  </div>
+</div>
+{% endblock content_block %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="eng">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{% static 'ambiental/css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="{% static 'ambiental/js/jquery-3.1.1.js' %}"></script>
+    <title>Ambiental</title>
+  </head>
+  <body>
+    </br>
+    </br>
+    </br>
+      <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+        <a class="navbar-brand" href="{% url 'index' %}">Ambiental</a>
+        <div id="navbar">
+          <nav class="nav navbar-nav pull-xs-left">
+            <a class="nav-link" href="{% url 'create-project' %}">Create a New Project</a>
+            {% if user.is_active %}
+            <a class="nav-link" href="{% url 'login' %}">Log Out</a>
+            {% else %}
+            <a class="nav-link" href="{% url 'registration' %}">Register</a>
+            {% endif %}
+          <form class="form-inline my-2 my-lg-0" id="search_form" method="post" action="{% url 'search' %}">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" name="query" id="query" type="text" placeholder="Search">
+            <input class="btn btn-outline my-2 my-sm-0" type="submit" value="Search"/>
+          </form>
+          </nav>
+        </div>
+      </nav>
+      {% block content_block %}
+      {% endblock %}
+    <script src="{% static 'ambiental/js/bootstrap.js' %}"></script>
+  </body>
+<html>

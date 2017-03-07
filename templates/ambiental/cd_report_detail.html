@@ -1,0 +1,139 @@
+{% extends 'ambiental/base.html' %}
+{% load staticfiles %}
+
+{% block content_block %}
+    <h1><a class="btn btn-danger " href="{% url 'project' cd.object.project.slug %}">Go Back</a></h1>
+    <br>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Rating Element</th>
+          <th>Weighting Designation</th>
+          <th>Weighting Factor</th>
+          <th>Maturity Value</th>
+          <th>Score</th>
+          <th>Comment</th>
+        </tr>
+        <tr>
+          <th>{{ ratingElement.group }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ratingElement in rea %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_a }}</strong></td>
+        </tr>
+        {% for ratingElement in reb %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_b }}</strong></td>
+        </tr>
+        {% for ratingElement in rec %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_c }}</strong></td>
+        </tr>
+        {% for ratingElement in red %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_d }}</strong></td>
+        </tr>
+        {% for ratingElement in ree %}
+        <tr>
+          <td>{{ ratingElement.index }}</td>
+          <td>{{ ratingElement.name }}</td>
+          <td>{{ ratingElement.wd }}</td>
+          <td>{{ ratingElement.wf }}</td>
+          <td>{{ ratingElement.mv }}</td>
+          <td>{{ ratingElement.score }}</td>
+          <td>{{ ratingElement.comment }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>Total:</strong></td>
+          <td><strong>{{ cd.object.score_e }}</strong></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><h4><strong>CD Total:</strong></h4></td>
+          <td><strong>{{ cd.object.total_score }}</strong></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a class="btn btn-danger" href="{% url 'project' cd.object.project.slug %}">Go Back</a></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+{% endblock content_block %}

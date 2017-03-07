@@ -1,0 +1,17 @@
+{% extends 'ambiental/base.html' %}
+{% load staticfiles %}
+
+{% block content_block %}
+<div class="container">
+  {% if result %}
+    {% for project in result %}
+      <ul class="list-group">
+        <li class="list-group-item justify-content-between">
+          <a href="{% url 'project' project.slug %}"><strong>{{ project }}</strong></a>
+          <span class="badge badge-default badge-pill">By {{ project.creator }}</span>
+        </li>
+      </ul>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endblock content_block %}
